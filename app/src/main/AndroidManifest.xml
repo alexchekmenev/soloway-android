@@ -28,6 +28,11 @@
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/SoloWayTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".RouteActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,18 +40,18 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".RouteActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
         !--Developers should put application credentials here.To obtain them, please register the application
         at https://developer.here.com/develop/mobile-sdks-->
         <meta-data
             android:name="com.here.android.maps.appid"
-            android:value="r6H9e8ylyn5qAxTdKTsG" />
+            android:value="pMeMhZhj0Cndm9XFadhH" />
         <meta-data
             android:name="com.here.android.maps.apptoken"
-            android:value="m1C81hekclX83lTaSXDPcw" />
+            android:value="PbmQnQr2I_w5J-6gyjwk5Q" />
+        <meta-data
+            android:name="com.here.android.maps.license.key"
+            android:value="WuPj28VG5yTv4qes3gGDSUJL8f09c967LH+7Vtrn8OV9junpFtk2KdwZTtAEMFfUbTKz9SuJnjIrV4BwrdTNYX5OqXgxQzL57BreZCfKQY6ilF9yFsols1HzLNtloQr+UEa4uD7FAvo5zhy065oFcxQhICJFiKI0HbkNIbu+qsKEGW9oCq2JQ/FEIJRVBEPFOFPxpfHBpPXmMKySyCDQj/T2DsSC0iv5MMxx8WSMmOH2I5Iqq1CTUDOjAq4ltw7ZZ97iEdBIaVbKlwYZs+QIr/5dvPUZciNffGxf7qkrchkvML6BJirYIqFAxGLCccdoMAFSSmCZ8uLH1cwo4Oy4K/9x/pdtJdDRhtzUH/IZwrNJCkH+PBs1La8QpvO2/y2C2q8odnaiPhVHSYTdOv7DMoVnyfAEa0mfE9k3sXPVAXwmplznq6Ql9HJrD1TGWAc67gsNRUuTT0bLralpI6DmobxGgTsSh6/cUdWL5Zpc9qr7cW/7DMnqnIIsIGNPJlbBELRWrbRZRgeEJ1Z457DOVQHxH55PVtYjWaS9U8P7zXi2sXY/kT7d3ObtlNNCgnIki+mAt5Su7UFEXDzA/+zccUbuBCo8zOYLppOtRahyeNCqe/dETdjgpbZxyKnSwzChcWo6ldKT1z1ZknGI26SNBcH5sW/l9GC4dBkkPnAzL1M=" />
+
 
         <!--Developers should always provide custom values for each of {YOUR_LABEL_NAME} and {YOUR_INTENT_NAME}.
         Do not reuse HERE SDK defaults.-->
@@ -55,10 +60,11 @@
             android:value="MAP_RENDERING" />
         <service
             android:name="com.here.android.mpa.service.MapService"
-            android:label="TEST_LABEL"
+            android:process="global.Here.Map.Service.v3"
+            android:label="HereMapService"
             android:exported="false">
             <intent-filter>
-                <action android:name="{YOUR_INTENT_NAME}"></action>
+                <action android:name="MAP_RENDERING"></action>
             </intent-filter>
         </service>
 

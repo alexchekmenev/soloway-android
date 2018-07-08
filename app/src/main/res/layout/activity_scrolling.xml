@@ -74,7 +74,6 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginStart="16dp"
                     android:background="#80000000"
-                    android:fontFamily="@font/roboto"
                     android:fontWeight="400"
                     android:padding="4dp"
                     android:text="@string/text_sub_header"
@@ -135,7 +134,7 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_marginStart="8dp"
-                        android:background="@mipmap/ic_star_16"
+                        android:background="@mipmap/ic_star_50"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
                 </android.support.constraint.ConstraintLayout>
