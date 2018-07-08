@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="play_button_text">\u00A0Прослушать гида</string>
+    <string name="text_header">Памятник Газовикам</string>
+    <string name="text_sub_header">Одно из самых ярких зданий города</string>
+    <string name="header_place_name">Описание места</string>
+</resources>
