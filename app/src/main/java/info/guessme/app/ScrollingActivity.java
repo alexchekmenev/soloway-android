@@ -1,15 +1,34 @@
 package info.guessme.app;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+
+import java.util.Locale;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 public class ScrollingActivity extends AppCompatActivity {
+
+    private TextToSpeech TTS;
+    private boolean ttsEnabled = false;
+
+    private boolean isPlaying = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +41,45 @@ public class ScrollingActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("");
         }
 
+        TTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override public void onInit(int initStatus) {
+                if (initStatus == TextToSpeech.SUCCESS) {
+                    if (TTS.isLanguageAvailable(new Locale(Locale.getDefault().getLanguage()))
+                            == TextToSpeech.LANG_AVAILABLE) {
+                        TTS.setLanguage(new Locale(Locale.getDefault().getLanguage()));
+                    } else {
+                        TTS.setLanguage(Locale.US);
+                    }
+                    TTS.setPitch(1.3f);
+                    TTS.setSpeechRate(0.7f);
+                    ttsEnabled = true;
+                } else if (initStatus == TextToSpeech.ERROR) {
+                    Toast.makeText(ScrollingActivity.this, "Ошибка", Toast.LENGTH_LONG).show();
+                    ttsEnabled = false;
+                }
+            }
+        });
+
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
 
         final Button playButton = (Button) findViewById(R.id.play_button);
+
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isPlaying) {
+                    playButton.setText(R.string.play_button_text);
+                    playButton.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_stop_white_18, 0, 0, 0);
+                    play(R.string.large_text);
+                } else {
+                    playButton.setText(R.string.play_button_text_playing);
+                    playButton.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_play_24, 0, 0, 0);
+                    stop();
+                }
+                isPlaying = !isPlaying;
+            }
+        });
+
         final TextView textHeader = (TextView) findViewById(R.id.text_header);
 
         final TextView textSubHeader = (TextView) findViewById(R.id.text_sub_header);
@@ -82,5 +137,55 @@ public class ScrollingActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        MultiTransformation<Bitmap> multi = new MultiTransformation<>(
+                new CenterCrop()
+        );
+        Glide.with(this)
+                .load(R.drawable.sample)
+                .apply(bitmapTransform(multi))
+                .into(imageView);
+
+        Button continueButton = (Button) findViewById(R.id.continue_button);
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextPlace();
+            }
+        });
+    }
+
+    public void play(int resId) {
+        String text = getResources().getString(resId);
+        if (!ttsEnabled) return;
+        String utteranceId = this.hashCode() + "";
+        TTS.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+    }
+
+    public void stop() {
+        String utteranceId = this.hashCode() + "";
+        TTS.stop();
+    }
+
+    private void nextPlace() {
+        Log.d("GUESSME", "nextPlace");
+        if (ttsEnabled) {
+            TTS.stop();
+            TTS.shutdown();
+        }
+
+        Intent intent = new Intent(ScrollingActivity.this, RouteActivity.class);
+//        intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (ttsEnabled) {
+            TTS.stop();
+            TTS.shutdown();
+        }
     }
 }

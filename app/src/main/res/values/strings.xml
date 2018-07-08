@@ -96,4 +96,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="play_button_text">Listen to the guide</string>
+    <string name="continue_button_text">Continue route</string>
 </resources>

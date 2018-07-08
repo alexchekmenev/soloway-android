@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission." />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".MyApp"
@@ -13,13 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SoloWayTheme">
+
         <activity
             android:name=".DrawerActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
-        </activity>
         <activity
+            android:noHistory="true"
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/SoloWayTheme.NoActionBar">
@@ -29,6 +34,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".RouteActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        !--Developers should put application credentials here.To obtain them, please register the application
+        at https://developer.here.com/develop/mobile-sdks-->
+        <meta-data
+            android:name="com.here.android.maps.appid"
+            android:value="r6H9e8ylyn5qAxTdKTsG" />
+        <meta-data
+            android:name="com.here.android.maps.apptoken"
+            android:value="m1C81hekclX83lTaSXDPcw" />
+
+        <!--Developers should always provide custom values for each of {YOUR_LABEL_NAME} and {YOUR_INTENT_NAME}.
+        Do not reuse HERE SDK defaults.-->
+        <meta-data
+            android:name="INTENT_NAME"
+            android:value="MAP_RENDERING" />
+        <service
+            android:name="com.here.android.mpa.service.MapService"
+            android:label="TEST_LABEL"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="{YOUR_INTENT_NAME}"></action>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>
