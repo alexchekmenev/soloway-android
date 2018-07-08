@@ -5,12 +5,12 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="#e6e6e6"
     android:fitsSystemWindows="true">
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="380dp"
+        android:layout_width="0dp"
         android:layout_height="300dp"
         android:fitsSystemWindows="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,8 @@
 
         <!-- Map Fragment embedded with the map object -->
         <fragment
-            android:id="@+id/mapfragment" class="com.here.android.mpa.mapping.MapFragment"
+            android:id="@+id/mapfragment"
+            class="com.here.android.mpa.mapping.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,14 +66,16 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="229dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

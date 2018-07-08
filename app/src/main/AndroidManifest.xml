@@ -17,30 +17,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SoloWayTheme">
-
         <activity
             android:name=".DrawerActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:noHistory="true"
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/SoloWayTheme.NoActionBar">
-        </activity>
-
+            android:noHistory="true"
+            android:theme="@style/SoloWayTheme.NoActionBar"></activity>
         <activity
-            android:name=".RouteActivity"
+            android:name=".route.RouteActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
-
-        !--Developers should put application credentials here.To obtain them, please register the application
+        !--Developers should put application credentials here.To obtain them, please register the
+        application
         at https://developer.here.com/develop/mobile-sdks-->
         <meta-data
             android:name="com.here.android.maps.appid"
@@ -52,22 +48,36 @@
             android:name="com.here.android.maps.license.key"
             android:value="WuPj28VG5yTv4qes3gGDSUJL8f09c967LH+7Vtrn8OV9junpFtk2KdwZTtAEMFfUbTKz9SuJnjIrV4BwrdTNYX5OqXgxQzL57BreZCfKQY6ilF9yFsols1HzLNtloQr+UEa4uD7FAvo5zhy065oFcxQhICJFiKI0HbkNIbu+qsKEGW9oCq2JQ/FEIJRVBEPFOFPxpfHBpPXmMKySyCDQj/T2DsSC0iv5MMxx8WSMmOH2I5Iqq1CTUDOjAq4ltw7ZZ97iEdBIaVbKlwYZs+QIr/5dvPUZciNffGxf7qkrchkvML6BJirYIqFAxGLCccdoMAFSSmCZ8uLH1cwo4Oy4K/9x/pdtJdDRhtzUH/IZwrNJCkH+PBs1La8QpvO2/y2C2q8odnaiPhVHSYTdOv7DMoVnyfAEa0mfE9k3sXPVAXwmplznq6Ql9HJrD1TGWAc67gsNRUuTT0bLralpI6DmobxGgTsSh6/cUdWL5Zpc9qr7cW/7DMnqnIIsIGNPJlbBELRWrbRZRgeEJ1Z457DOVQHxH55PVtYjWaS9U8P7zXi2sXY/kT7d3ObtlNNCgnIki+mAt5Su7UFEXDzA/+zccUbuBCo8zOYLppOtRahyeNCqe/dETdjgpbZxyKnSwzChcWo6ldKT1z1ZknGI26SNBcH5sW/l9GC4dBkkPnAzL1M=" />
 
-
-        <!--Developers should always provide custom values for each of {YOUR_LABEL_NAME} and {YOUR_INTENT_NAME}.
-        Do not reuse HERE SDK defaults.-->
+        <!--
+        Developers should always provide custom values for each of {YOUR_LABEL_NAME} and {YOUR_INTENT_NAME}.
+        Do not reuse HERE SDK defaults.
+        -->
         <meta-data
             android:name="INTENT_NAME"
             android:value="MAP_RENDERING" />
+
         <service
             android:name="com.here.android.mpa.service.MapService"
-            android:process="global.Here.Map.Service.v3"
+            android:exported="false"
             android:label="HereMapService"
-            android:exported="false">
+            android:process="global.Here.Map.Service.v3">
             <intent-filter>
-                <action android:name="MAP_RENDERING"></action>
+                <action android:name="MAP_RENDERING" />
             </intent-filter>
         </service>
 
+        <activity
+            android:noHistory="true"
+            android:name=".SplashScreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="SoloWay"
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

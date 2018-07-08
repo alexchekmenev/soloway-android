@@ -21,6 +21,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 
 import java.util.Locale;
 
+import info.guessme.app.route.RouteActivity;
+
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 public class ScrollingActivity extends AppCompatActivity {
@@ -143,7 +145,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 new CenterCrop()
         );
         Glide.with(this)
-                .load(R.drawable.sample)
+                .load(R.drawable.museum)
                 .apply(bitmapTransform(multi))
                 .into(imageView);
 
