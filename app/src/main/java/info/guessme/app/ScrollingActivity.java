@@ -68,11 +68,11 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isPlaying) {
-                    playButton.setText(R.string.play_button_text);
+                    playButton.setText(R.string.play_button_text_playing);
                     playButton.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_stop_white_18, 0, 0, 0);
                     play(R.string.large_text);
                 } else {
-                    playButton.setText(R.string.play_button_text_playing);
+                    playButton.setText(R.string.play_button_text);
                     playButton.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_play_24, 0, 0, 0);
                     stop();
                 }
